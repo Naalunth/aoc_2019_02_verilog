@@ -1,3 +1,5 @@
+`timescale 1us/1ns
+
 module memory(
     data_out,
     address,

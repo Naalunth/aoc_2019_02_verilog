@@ -1,4 +1,4 @@
-`include "intcode.sv"
+`include "src/intcode.sv"
 `timescale 1us/1ns
 
 module testbench;

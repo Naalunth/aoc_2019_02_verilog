@@ -1,4 +1,5 @@
-`include "memory.sv"
+`include "src/memory.sv"
+`timescale 1us/1ns
 
 module intcode(
     input logic clk,
@@ -19,7 +20,7 @@ module intcode(
         .data_out(memory_read),
         .address(memory_address)
     );
-    initial $readmemh("input.hex", mem.memory);
+    initial $readmemh("input/input.hex", mem.memory);
 
     // register b00: arithmetic accumulator
     // register b01: general purpose
@@ -29,7 +30,7 @@ module intcode(
 
     bit [7:0] micro_instruction_pointer = '0;
     bit [7:0] micro_code [256];
-    initial $readmemb("micro_code.mem", micro_code, 0, 255);
+    initial $readmemb("src/micro_code.bin", micro_code, 0, 255);
 
     enum logic [2:0] {
         RUNNING = 0,
@@ -183,11 +184,6 @@ module intcode(
     assign dump_register_3 = registers[3];
     initial begin
         $dumpvars(0, dump_register_3);
-    end
-    bit [7:0] dump_state;
-    assign dump_state = state;
-    initial begin
-        $dumpvars(0, dump_state);
     end
 
 endmodule // intcode
