@@ -1,0 +1,18 @@
+0000 xxyy  0?  mv rx ry -- copy from reg y to x
+
+0001 xxyy  1?  ld rx ry -- load from memory addr reg y into reg x
+0010 xxyy  2?  st rx ry -- write to memory addr reg x from reg y
+
+0011 00xx  3? test rx -- set flags according to reg x
+0011 01xx  3? jz rx -- jump if zero flag is set to micro code address reg x
+
+0011 1110  fe  next -- load next instruction
+0011 1111  ff  halt -- code end
+
+01xx yyyy  8?  ld rx y -- load number y into reg x
+
+1iii xxxx -- maths
+     0xxx  -- number x
+     11xx  -- reg x
+1000 xxxx  [44:4f]  add x -- add
+1001 xxxx  [44:4f]  mul x -- multiply
